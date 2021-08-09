@@ -36,4 +36,17 @@ public class LivroControle {
         repo.save(livro);
         this.bytes = null;
     }
+
+    @DeleteMapping(path = { "/{id}"})
+    public Livro deletarLivro(@PathVariable("id")long id) {
+        Livro livro = repo.getOne(id);
+        repo.deleteById(id);
+
+        return livro;
+    }
+
+    @PutMapping("/update")
+    public void atualizarLivro(@RequestBody Livro livro) {
+        repo.save(livro);
+    }
 }
